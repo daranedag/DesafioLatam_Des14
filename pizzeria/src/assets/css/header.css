@@ -1,0 +1,11 @@
+hr{
+    border: 3px solid white;
+}
+#cabeceraFondo{
+    background-image: url('../img/fotoPizzaHeader.jpg');
+    background-size: cover;
+    background-position: center;
+    background-color: rgba(0, 0, 0, 0.5); /* Color de fondo negro con transparencia */
+    background-blend-mode: overlay;
+    min-height: 200px;
+}
