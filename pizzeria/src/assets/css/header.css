@@ -1,5 +1,7 @@
-hr{
-    border: 3px solid white;
+.custom-hr{
+    height: 1px;
+    background-color: white;
+    border: none;
 }
 #cabeceraFondo{
     background-image: url('../img/fotoPizzaHeader.jpg');

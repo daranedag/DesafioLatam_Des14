@@ -1,10 +1,10 @@
 import React from "react";
+import '../assets/css/footer.css';
 
 const Footer = () =>(
-    <div className="bg-dark text-light text-center">
+    <div className="bg-dark text-light d-flex justify-content-center align-items-center footer">
         <p>
             &copy;2024 - Pizzería Mamma Mia! - Todos los derechos reservados
-            <br />Síguenos en Instagram @pizzeriamammamia
         </p>
     </div>
 );

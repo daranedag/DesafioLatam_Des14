@@ -7,7 +7,9 @@ const Header = () =>(
         <p className="text-light text-center">
             Tenemos las mejores pizzas que podrás encontrar
         </p>
-        <hr />
+        <div className="container">
+            <hr className="custom-hr"/>
+        </div>
     </header>
 );
 
