@@ -1,8 +1,9 @@
 # DesafioLatam_Des14
 ## Hito 2 React (27-09-2024)
 
-Para este hito, se quitó la generacion del token aleatorio para que se muestren siempre los links de Login y Register en el Navbar
-Los mensajes de error se muestran como parrafos en los formularios y si todo está bien, se muestra un alert con texto.
+Para este hito, se quitó la generacion del token aleatorio para que se muestren siempre los links de Login y Register en el Navbar.
+
+Los mensajes de error se muestran como parrafos en los formularios y si todo el form está bien, se muestra un alert con texto al presionar el botón correspondiente.
 
 
 ## Hito 1 React (14-09-2024)
