@@ -1,5 +1,11 @@
 # DesafioLatam_Des14
-Hito 1 React
+## Hito 2 React (27-09-2024)
+
+Para este hito, se quitó la generacion del token aleatorio para que se muestren siempre los links de Login y Register en el Navbar
+Los mensajes de error se muestran como parrafos en los formularios y si todo está bien, se muestra un alert con texto.
+
+
+## Hito 1 React (14-09-2024)
 
 Consideraciones especiales:
 Para este hito en el archivo Home.jsx se creó una const pizzasMostrar que tiene un json con los datos de las pizzas a mostrar y se les pasa como parametro al componente CardPizza.
