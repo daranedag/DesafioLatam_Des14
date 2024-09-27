@@ -1,0 +1,89 @@
+import React, { useState } from "react";
+
+const Login = () =>{
+    const [email, setEmail] = useState("")    
+    const [errorMail, setErrorMail] = useState(false)
+    const [errorMailFormat, setErrorMailFormat] = useState(false)
+
+    const [pass, setPass] = useState("")
+    const [errorPass, setErrorPass] = useState(false)
+    const [errorPassLargo, setErrorPassLargo] = useState(false)    
+    
+    const validarInput = (e) =>{
+        e.preventDefault()
+
+        setErrorMail(false)
+        setErrorPass(false)
+        setErrorPassLargo(false)
+        setErrorMailFormat(false)
+
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+
+        if(email === ''){
+            setErrorMail(true)
+            return
+        }
+
+        if (!emailRegex.test(email)) {
+            setErrorMailFormat(true)
+            return
+        }
+
+        if(pass === ''){
+            setErrorPass(true)
+            return
+        }
+        if(pass.length < 6){
+            setErrorPassLargo(true)
+            return
+        }
+
+        alert("Autentificación exitosa!!")
+    }
+
+    const cambiarMailInput = (e) => {
+        setEmail(e.target.value);
+    
+        // Si el email no está vacío o tiene el formato correcto, elimina el error
+        if (e.target.value !== "") {
+            setErrorMail(false);
+        }
+        if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e.target.value)) {
+            setErrorMailFormat(false);
+        }
+    };
+
+    const cambiarPassInput = (e) => {
+        setPass(e.target.value);
+    
+        // Si la contraseña no está vacía, elimina el error de contraseña
+        if (e.target.value !== "") {
+          setErrorPass(false);
+        }
+    
+        // Si la contraseña tiene 6 caracteres o más, elimina el error de longitud
+        if (e.target.value.length >= 6) {
+          setErrorPassLargo(false);
+        }
+    };
+    return(
+        <div className="container mt-3 mb-5">
+            <h1>Login</h1>
+            <form onSubmit={validarInput}>
+                {errorMail ? <p className="text-bg-danger" id="errorMail">Debes ingresar tu email</p> : null}
+                {errorMailFormat ? (<p className="text-bg-danger" id="errorMailFormat">El formato del email no es válido</p>) : null}
+                <label htmlFor="correo" className="form-label">Email</label>
+                <input type="email" id="correo" name="correo" placeholder="Ingresa tu email" className="form-control mb-2" onChange={cambiarMailInput}/>
+                
+                {errorPass ? <p className="text-bg-danger">Debes ingresar tu contraseña</p>: null}
+                {errorPassLargo ? <p className="text-bg-danger">Tu contraseña debe tener al menos 6 caracteres</p>: null}
+                <label htmlFor="pass" className="form-label">Contraseña</label>
+                <input type="password" id="pass" name="pass" placeholder="Ingresa tu contraseña" className="form-control mb-2" onChange={cambiarPassInput}/>
+                
+                <button type="submit" className="btn btn-primary">Iniciar Sesión</button>
+            </form>
+        </div>
+    );
+}
+
+export default Login;

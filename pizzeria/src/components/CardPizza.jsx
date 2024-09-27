@@ -13,7 +13,9 @@ const CardPizza = ({ name, price, ingredients, img }) => {
                 <div className="d-flex flex-wrap justify-content-center">
                     <img src={iconoPizza} alt="IconoPizza" className="iconoPizza" />
                     {ingredients.map((ingredient, index) => (
-                        <span key={index} className="badge bg-light me-1 text-dark">{ingredient}</span>
+                        <span key={index} className="badge bg-light me-1 text-dark">
+                            {ingredient}
+                        </span>
                     ))}
                 </div>
                 <p className="card-text text-center mb-3 precioPizza">Precio: ${price}</p>

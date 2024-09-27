@@ -1,13 +1,17 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const NavBar = () =>{
-    const total = 25000;
-    const token = Math.random() >= 0.5;
+    const getRandomNumber= (min, max) => Math.round((Math.floor(Math.random()*(max-min+1))+min)/100)*100;
+    const total = getRandomNumber(9000, 120000);
+    const token = Math.random() >= 1;
 
     return(
     <nav className="navbar navbar-expand-lg bg-dark">
         <div className="container-fluid">
-            <a className="navbar-brand text-light" href="#">Pizzería Mamma Mia</a>
+            <Link className="navbar-brand text-light" to="/">
+                Pizzería Mamma Mia
+            </Link>
             <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"></span>
             </button>
@@ -15,49 +19,49 @@ const NavBar = () =>{
             <div className="collapse navbar-collapse d-flex" id="navbarNav">
                 <ul className="navbar-nav w-100">
                     <li className="nav-item">
-                        <a className="nav-link" aria-current="page" href="#">
+                        <Link className="nav-link text-light" to="/">
                             <button className="btn btn-outline-light">
                                 <i className="bi bi-house"></i>
                                 &nbsp;Home
                             </button>
-                        </a>                        
+                        </Link>                        
                     </li>
                     {token ? (
                         <>
                         <li className="nav-item">
-                            <a className="nav-link" href="#">
+                            <Link className="nav-link text-light" to="#">
                                 <button className="btn btn-outline-light">
                                     <i className="bi bi-unlock"></i>
                                     &nbsp;Profile
                                 </button>
-                            </a>
+                            </Link>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="#">
+                            <Link className="nav-link text-light" to="#">
                                 <button className="btn btn-outline-light">
                                     <i className="bi bi-lock"></i>
                                     &nbsp;Logout
                                 </button>
-                            </a>
+                            </Link>
                         </li>
                         </>
                     ) : (
                         <>
                         <li className="nav-item">
-                            <a className="nav-link" href="#">
+                            <Link className="nav-link text-light" to="/login">
                                 <button className="btn btn-outline-light">
                                     <i className="bi bi-key"></i>
                                     &nbsp;Login
                                 </button>
-                            </a>
+                            </Link>                            
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="#">
+                            <Link className="nav-link text-light" to="/register">
                                 <button className="btn btn-outline-light">
                                     <i className="bi bi-key"></i>
                                     &nbsp;Register
                                 </button>
-                            </a>
+                            </Link>
                         </li>
                         </>
                     )}
@@ -65,7 +69,7 @@ const NavBar = () =>{
                         <a className="nav-link" href="#">
                             <button className="btn btn-outline-info">
                                 <i className="bi bi-cart3"></i>
-                                &nbsp;Total: ${total}
+                                &nbsp;Total: ${total.toLocaleString()}
                             </button>
                         </a>
                     </li>
