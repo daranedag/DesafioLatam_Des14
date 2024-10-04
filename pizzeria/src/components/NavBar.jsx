@@ -1,10 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { pizzaCart } from "../assets/js/pizzas";
 
-const NavBar = () =>{
-    const getRandomNumber= (min, max) => Math.round((Math.floor(Math.random()*(max-min+1))+min)/100)*100;
-    const total = getRandomNumber(9000, 120000);
+const NavBar = ({ total }) =>{
+    
     const token = Math.random() >= 1;
+    let totalCart = 0;
+
+    pizzaCart.forEach(element => {
+        totalCart += element.price;
+    });
 
     return(
     <nav className="navbar navbar-expand-lg bg-dark">
@@ -66,7 +71,7 @@ const NavBar = () =>{
                         </>
                     )}
                     <li className="nav-item ms-auto">
-                        <a className="nav-link" href="#">
+                        <a className="nav-link" href="/cart">
                             <button className="btn btn-outline-info">
                                 <i className="bi bi-cart3"></i>
                                 &nbsp;Total: ${total.toLocaleString()}

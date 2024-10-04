@@ -7,6 +7,7 @@
 .precioPizza{
     font-size: 28px;
     font-weight: bold;
+    color: rgb(78, 78, 78);
 }
 
 .iconoPizza{
@@ -15,5 +16,9 @@
 }
 
 .ingredientesPizza{
-    font-size: 20px;
+    font-size: 18px;
+}
+
+.descripcionPizza{
+    font-size: 13px;
 }

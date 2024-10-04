@@ -2,12 +2,13 @@ import React from "react";
 import iconoPizza from '../assets/img/pizzaIcon.png';
 import '../assets/css/cardpizza.css';
 
-const CardPizza = ({ name, price, ingredients, img }) => {
+const CardPizza = ({ id, name, price, ingredients, img, desc }) => {
     return(
-        <div className="card flex-fill my-2" style={{ width: 22+'rem' }}>
+        <div className="card flex-fill my-2" id={id} style={{ width: 22+'rem' }}>
             <img src={img} className="card-img-top fotoPizza" alt={`Imagen de ${name}`} />
             <div className="card-body">
-                <h5 className="card-title">Pizza {name}</h5>
+                <h5 className="card-title text-center text-capitalize">Pizza {name}</h5>
+                <p className="text-center descripcionPizza">{desc}</p>
                 <hr />
                 <p className="text-center ingredientesPizza">Ingredientes</p>                
                 <div className="d-flex flex-wrap justify-content-center">
