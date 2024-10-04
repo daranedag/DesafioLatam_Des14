@@ -1,4 +1,12 @@
 # DesafioLatam_Des14
+## Hito 3 React (04-10-2024)
+Se quitó la generación de numero aleatorio para mostrar en el carro de compras y se utiliza el que se carga desde pizza.js.
+
+Al pinchar sobre el boton del carro se muestran las pizzas con sus botones y la actualización del total a pagar y las cantidades.
+
+Se muestran las pizzas del archivo pizza.js y se agrega la descripción a la CardPizza.
+
+
 ## Hito 2 React (27-09-2024)
 
 Para este hito, se quitó la generacion del token aleatorio para que se muestren siempre los links de Login y Register en el Navbar.
