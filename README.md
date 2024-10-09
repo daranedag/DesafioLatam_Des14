@@ -1,4 +1,17 @@
 # DesafioLatam_Des14
+## Hito 4 React (09-10-2024)
+
+Como el componente Cart.jsx no se pidió modificar para este hito, mantiene aún su logica de funcionamiento con el archivo pizza.js del hito anterior. Pero las referencias a este archivo fueron removidas de los componentes que deban llamar a la API para funcionar.
+
+Las llamadas a la API estan configuradas para localhost:5000 y no se incluyen los archivos para levantarla.
+
+Se quitó la descripción de las pizzas de CardPizza.jsx para no repetir tanta información y que se muestren en el nuevo archivo Pizza.jsx.
+
+Se agregó useParams y useNavigate en los diferentes .jsx para que el boton "Ver mas" que se muestra en el Home, lleve al detalle de cada Pizza de manera dinámica.
+
+En caso de que haya algún error al momento de llamar a la API se muestra un mensaje de error con el detalle.
+
+
 ## Hito 3 React (04-10-2024)
 Se quitó la generación de numero aleatorio para mostrar en el carro de compras y se utiliza el que se carga desde pizza.js.
 
