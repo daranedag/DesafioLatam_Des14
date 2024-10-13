@@ -2,6 +2,8 @@ import axios from "axios";
 import React, {useState, useEffect} from "react";
 import Header from "../components/Header";
 import CardPizza from "../components/CardPizza";
+import LoadingSpinner from "../components/LoadingSpinner";
+import ErrorMessage from "../components/ErrorMessage";
 import '../assets/css/main.css'
 
 const Home = () =>{
@@ -10,6 +12,7 @@ const Home = () =>{
     const [error, setError] = useState(null);
 
     const fetchPizzas = async () =>{
+        setLoading(true);
         try{
             const response = await axios.get('http://localhost:5000/api/pizzas');
             setPizzas(response.data);
@@ -26,11 +29,11 @@ const Home = () =>{
     }, []);
 
     if(loading){
-        return <div>Cargando pizzas...</div>
+        return <LoadingSpinner />;
     }
 
     if(error){
-        return <div>Error: {error}</div>
+        return <ErrorMessage error={error} onRetry={fetchPizzas} />;
     }
 
     return(

@@ -42,7 +42,7 @@ const NavBar = ({ total }) =>{
                             </Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link text-light" to="#">
+                            <Link className="nav-link text-light" to="/">
                                 <button className="btn btn-outline-light">
                                     <i className="bi bi-lock"></i>
                                     &nbsp;Logout
