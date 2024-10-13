@@ -1,4 +1,18 @@
 # DesafioLatam_Des14
+## Hito 5 React (13-10-2024)
+
+Ya estaba el componente react router implementado, solo se ajusta a los requerimientos pedidos en este hito.
+
+Se cambian los componentes Home, Register, Login, Cart y Pizza a la carpeta pages
+
+Se crean las rutas necesarias para los componentes indicados manteniendo el id dinámico del Hito 4, agregando el Profile y NotFound para paginas no existentes
+
+El nombre, apellido y mail del usuario se reciben en el componente Profile desde el App.jsx
+
+El boton de Cerrar Sesión del Profile como el Logout del NavBar redirigen al Home
+
+Se agrega como extra 2 componentes estilizados para la consulta de datos de la API y el error en caso de que falle.
+
 ## Hito 4 React (09-10-2024)
 
 Como el componente Cart.jsx no se pidió modificar para este hito, mantiene aún su logica de funcionamiento con el archivo pizza.js del hito anterior. Pero las referencias a este archivo fueron removidas de los componentes que deban llamar a la API para funcionar.
