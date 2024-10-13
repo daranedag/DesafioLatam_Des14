@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, {useState, useEffect} from "react";
-import Header from "./Header";
-import CardPizza from "./CardPizza";
+import Header from "../components/Header";
+import CardPizza from "../components/CardPizza";
 import '../assets/css/main.css'
 
 const Home = () =>{

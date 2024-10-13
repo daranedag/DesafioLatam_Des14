@@ -4,7 +4,7 @@ import { pizzaCart } from "../assets/js/pizzas";
 
 const NavBar = ({ total }) =>{
     
-    const token = Math.random() >= 1;
+    const token = Math.random() >= 0;
     let totalCart = 0;
 
     pizzaCart.forEach(element => {
@@ -34,7 +34,7 @@ const NavBar = ({ total }) =>{
                     {token ? (
                         <>
                         <li className="nav-item">
-                            <Link className="nav-link text-light" to="#">
+                            <Link className="nav-link text-light" to="/profile">
                                 <button className="btn btn-outline-light">
                                     <i className="bi bi-unlock"></i>
                                     &nbsp;Profile
@@ -71,12 +71,12 @@ const NavBar = ({ total }) =>{
                         </>
                     )}
                     <li className="nav-item ms-auto">
-                        <a className="nav-link" href="/cart">
+                        <Link className="nav-link" to="/cart">
                             <button className="btn btn-outline-info">
                                 <i className="bi bi-cart3"></i>
                                 &nbsp;Total: ${total.toLocaleString()}
                             </button>
-                        </a>
+                        </Link>
                     </li>
                 </ul>
             </div>
