@@ -9,7 +9,7 @@ Se crean las rutas necesarias para los componentes indicados manteniendo el id d
 
 El nombre, apellido y mail del usuario se reciben en el componente Profile desde el App.jsx
 
-El boton de Cerrar Sesión del Profile como el Logout del NavBar redirigen al Home
+El boton de Cerrar Sesión del Profile como el Logout del NavBar redirigen al Home de la misma manera.
 
 Se agrega como extra 2 componentes estilizados para la consulta de datos de la API y el error en caso de que falle.
 
