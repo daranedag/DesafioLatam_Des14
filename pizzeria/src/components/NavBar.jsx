@@ -1,11 +1,19 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { pizzaCart } from "../assets/js/pizzas";
+import "../assets/css/navbar.css";
 
 const NavBar = ({ total }) =>{
     
     const token = Math.random() >= 0;
     let totalCart = 0;
+
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        alert("Cerrando sesión");
+        navigate("/");
+    }
 
     pizzaCart.forEach(element => {
         totalCart += element.price;
@@ -42,12 +50,10 @@ const NavBar = ({ total }) =>{
                             </Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link text-light" to="/">
-                                <button className="btn btn-outline-light">
-                                    <i className="bi bi-lock"></i>
-                                    &nbsp;Logout
-                                </button>
-                            </Link>
+                            <button className="btn btn-outline-light botonLogout" onClick={handleLogout}>
+                                <i className="bi bi-lock"></i>
+                                &nbsp;Logout
+                            </button>
                         </li>
                         </>
                     ) : (
