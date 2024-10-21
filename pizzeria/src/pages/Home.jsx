@@ -1,32 +1,13 @@
-import axios from "axios";
-import React, {useState, useEffect} from "react";
+import React, { useContext } from "react";
 import Header from "../components/Header";
 import CardPizza from "../components/CardPizza";
 import LoadingSpinner from "../components/LoadingSpinner";
 import ErrorMessage from "../components/ErrorMessage";
-import '../assets/css/main.css'
+import { PizzaContext } from "../context/PizzaContext";
+import '../assets/css/main.css';
 
-const Home = () =>{
-    const [pizzas, setPizzas] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
-
-    const fetchPizzas = async () =>{
-        setLoading(true);
-        try{
-            const response = await axios.get('http://localhost:5000/api/pizzas');
-            setPizzas(response.data);
-            setLoading(false);
-        }
-        catch(err){
-            setError(err.message);
-            setLoading(false);
-        }
-    }
-
-    useEffect(() => {
-        fetchPizzas();
-    }, []);
+const Home = () => {
+    const { pizzas, loading, error } = useContext(PizzaContext);
 
     if(loading){
         return <LoadingSpinner />;
