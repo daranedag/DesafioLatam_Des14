@@ -1,4 +1,14 @@
 # DesafioLatam_Des14
+## Hito 6 React (21-10-2024)
+
+Se crea una carpeta context en el proyecto
+
+Se implementan 2 Context: Carro y Pizza (CartContext y PizzaContext)
+
+Se pueden agregar las pizzas desde el Home y se actualizan los montos del NavBar y el carro de compras muestra correctamente las cantidades y valores.
+
+Se pueden sumar o restar más cantidades de pizzas seleccionadas en el carro de compras, actualizandose el valor en el total mostrado y en el navbar.
+
 ## Hito 5 React (13-10-2024)
 
 Ya estaba el componente react router implementado, solo se ajusta a los requerimientos pedidos en este hito.
