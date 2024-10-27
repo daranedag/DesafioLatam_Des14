@@ -48,10 +48,10 @@ const NavBar = () =>{
                                 </Link>
                             </li>
                             <li className="nav-item">
-                                <button className="btn btn-outline-light botonLogout" onClick={handleLogout}>
+                                {token && <button className="btn btn-outline-light botonLogout" onClick={handleLogout}>
                                     <i className="bi bi-lock"></i>
                                     &nbsp;Logout
-                                </button>
+                                </button>}
                             </li>
                             </>
                         ) : (

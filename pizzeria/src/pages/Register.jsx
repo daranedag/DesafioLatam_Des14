@@ -1,12 +1,30 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { UserContext } from "../context/UserContext";
+import { useNavigate } from "react-router-dom";
 
 const Register = () =>{
-
+    const { register } = useContext(UserContext);
     const [email, setEmail] = useState("")    
+    const [pass, setPass] = useState("")
+    const navigate = useNavigate();
+
+    const handleRegister = async (e) => {
+        e.preventDefault();
+
+        const isRegistered = await register(email, pass);
+        if (isRegistered){
+            alert("Registro exitoso");
+            navigate("/profile");
+        }
+        else{
+            alert("Error al registrarse");
+        }
+    };
+
     const [errorMail, setErrorMail] = useState(false)
     const [errorMailFormat, setErrorMailFormat] = useState(false)
 
-    const [pass, setPass] = useState("")
+    
     const [errorPass, setErrorPass] = useState(false)
     const [errorPassLength, setErrorPassLength] = useState(false)
 
@@ -92,7 +110,7 @@ const Register = () =>{
     return(        
         <div className="container mt-3 mb-5">
             <h1>Registro</h1>
-            <form onSubmit={validarInput}>
+            <form onSubmit={handleRegister}>
                 {errorMail ? <p className="text-bg-danger" id="errorMail">Debes ingresar tu email</p> : null}
                 {errorMailFormat ? (<p className="text-bg-danger" id="errorMailFormat">El formato del email no es válido</p>) : null}
                 <label htmlFor="correo" className="form-label">Email</label>

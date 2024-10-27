@@ -2,19 +2,31 @@ import React, { useContext, useState } from "react";
 import { UserContext } from "../context/UserContext";
 import { useNavigate } from "react-router-dom";
 
-const Login = () =>{
-    const { setToken } = useContext(UserContext);
+const Login = () => {
+    const { login } = useContext(UserContext);
+    const [email, setEmail] = useState("");
+    const [pass, setPass] = useState("");
     const navigate = useNavigate();
-    const [email, setEmail] = useState("")    
+
+    const { setToken } = useContext(UserContext);    
     const [errorMail, setErrorMail] = useState(false)
     const [errorMailFormat, setErrorMailFormat] = useState(false)
 
-    const [pass, setPass] = useState("")
+    
     const [errorPass, setErrorPass] = useState(false)
     const [errorPassLargo, setErrorPassLargo] = useState(false)    
     
-    const validarInput = (e) =>{
+    const handleLogin = async (e) =>{
         e.preventDefault()
+
+        const isAuthenticated = await login(email, pass);
+        if(isAuthenticated) {
+            alert("Autenticación exitosa");
+            navigate("/profile");
+        }
+        else{
+            alert("Error al iniciar sesión");
+        }
 
         setErrorMail(false)
         setErrorPass(false)
@@ -42,8 +54,6 @@ const Login = () =>{
             return
         }
 
-        alert("Autentificación exitosa!!")
-        setToken(true);
         navigate("/");
     }
 
@@ -72,7 +82,7 @@ const Login = () =>{
     return(
         <div className="container mt-3 mb-5">
             <h1>Login</h1>
-            <form onSubmit={validarInput}>
+            <form onSubmit={handleLogin}>
                 {errorMail ? <p className="text-bg-danger" id="errorMail">Debes ingresar tu email</p> : null}
                 {errorMailFormat ? (<p className="text-bg-danger" id="errorMailFormat">El formato del email no es válido</p>) : null}
                 <label htmlFor="correo" className="form-label">Email</label>

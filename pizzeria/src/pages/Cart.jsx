@@ -1,19 +1,24 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useCart } from "../context/CartContext";
 import { UserContext } from "../context/UserContext";
+import axios from "axios";
 
 const Cart = () => {
     const { cartItems, aumentarCantidad, disminuirCantidad, getTotal, clearCart } = useCart();
     const { token } = useContext(UserContext);
+    const [message, setMessage] = useState("");
 
     const totalLocal = getTotal();
 
-    const handlePagar = () => {
-        if(token && cartItems.length > 0){
-            alert("Pago exitoso! Gracias por tu compra y preferencia");
+    const handlePagar = async () => {
+        try{
+            await axios.post('http://localhost:5000/api/checkouts', { cartItems }, { headers: {Authorization: `Bearer ${token}`}});
+            setMessage("Compra realizda con exito!!");
             clearCart();
-        } else if (!token){
-            alert("Inicia sesión para realizar el pago!");
+        }
+        catch (error){
+            setMessage("Error al realizar la compra!");
+            alert(message);
         }
     };
 
@@ -56,6 +61,7 @@ const Cart = () => {
                 </button>
                 {!token && <p className="text-danger mt-2">Debes iniciar sesión para hacer el pago!!</p>}
                 {cartItems.length === 0 && <p className="text-danger mt-2">Carrito vacío, agrega tu pizza favorita ;)</p>}
+                {message && <p>{message}</p>}
             </div>
         </div>        
     );
