@@ -12,21 +12,16 @@ const Profile = ({ user }) => {
         navigate("/");
     }
 
-    if(token){
-        return (
-            <div id="container">
-                <img id="avatar" src="https://www.w3schools.com/howto/img_avatar.png" alt="Anonymous avatar"/>
-                <h2 id="name">{`${user.nombre} ${user.apellido}`}</h2>
-                <p id="email">{user.email}</p>
-                <button id="logoutButton" onClick={handleLogout}>
-                    Cerrar Sesión
-                </button>
-            </div>
-        );
-    }
-    else{
-        navigate("/login");
-    }
+    return (
+        <div id="container">
+            <img id="avatar" src="https://www.w3schools.com/howto/img_avatar.png" alt="Anonymous avatar"/>
+            <h2 id="name">{`${user.nombre} ${user.apellido}`}</h2>
+            <p id="email">{user.email}</p>
+            <button id="logoutButton" onClick={handleLogout}>
+                Cerrar Sesión
+            </button>
+        </div>
+    );
 };
 
 export default Profile;
