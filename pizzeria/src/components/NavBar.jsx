@@ -1,18 +1,19 @@
 import React, { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { CartContext } from "../context/CartContext";
+import { UserContext } from "../context/UserContext";
 
 import "../assets/css/navbar.css";
 
 const NavBar = () =>{
-    const token = Math.random() >= 0;
+    const { token, logout } = useContext(UserContext);
     const { getTotal } = useContext(CartContext);
     const total = getTotal();
 
     const navigate = useNavigate();
 
     const handleLogout = () =>{
-        alert("Cerrando sesión");
+        logout();
         navigate("/");
     }
 

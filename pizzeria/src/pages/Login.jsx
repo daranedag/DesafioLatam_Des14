@@ -1,6 +1,10 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { UserContext } from "../context/UserContext";
+import { useNavigate } from "react-router-dom";
 
 const Login = () =>{
+    const { setToken } = useContext(UserContext);
+    const navigate = useNavigate();
     const [email, setEmail] = useState("")    
     const [errorMail, setErrorMail] = useState(false)
     const [errorMailFormat, setErrorMailFormat] = useState(false)
@@ -39,12 +43,13 @@ const Login = () =>{
         }
 
         alert("Autentificación exitosa!!")
+        setToken(true);
+        navigate("/");
     }
 
     const cambiarMailInput = (e) => {
         setEmail(e.target.value);
     
-        // Si el email no está vacío o tiene el formato correcto, elimina el error
         if (e.target.value !== "") {
             setErrorMail(false);
         }
@@ -56,12 +61,10 @@ const Login = () =>{
     const cambiarPassInput = (e) => {
         setPass(e.target.value);
     
-        // Si la contraseña no está vacía, elimina el error de contraseña
         if (e.target.value !== "") {
           setErrorPass(false);
         }
     
-        // Si la contraseña tiene 6 caracteres o más, elimina el error de longitud
         if (e.target.value.length >= 6) {
           setErrorPassLargo(false);
         }

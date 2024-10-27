@@ -1,10 +1,21 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useCart } from "../context/CartContext";
+import { UserContext } from "../context/UserContext";
 
 const Cart = () => {
-    const { cartItems, aumentarCantidad, disminuirCantidad, getTotal } = useCart();
+    const { cartItems, aumentarCantidad, disminuirCantidad, getTotal, clearCart } = useCart();
+    const { token } = useContext(UserContext);
 
     const totalLocal = getTotal();
+
+    const handlePagar = () => {
+        if(token && cartItems.length > 0){
+            alert("Pago exitoso! Gracias por tu compra y preferencia");
+            clearCart();
+        } else if (!token){
+            alert("Inicia sesión para realizar el pago!");
+        }
+    };
 
     return(
         <div className="container my-2">
@@ -38,6 +49,14 @@ const Cart = () => {
                 }
             </div>
             <h2 className="text-center">Total: ${totalLocal.toLocaleString()}</h2>
+
+            <div className="text-center my-3">
+                <button className="btn btn-success" onClick={handlePagar} disabled={!token || cartItems.length === 0}>
+                    <i className="bi bi-credit-card-fill"></i>&nbsp;Pagar
+                </button>
+                {!token && <p className="text-danger mt-2">Debes iniciar sesión para hacer el pago!!</p>}
+                {cartItems.length === 0 && <p className="text-danger mt-2">Carrito vacío, agrega tu pizza favorita ;)</p>}
+            </div>
         </div>        
     );
 }

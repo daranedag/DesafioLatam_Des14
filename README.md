@@ -1,4 +1,18 @@
 # DesafioLatam_Des14
+## Hito 7 React (26-10-2024)
+
+Se crea el userContext dentro de la carpeta context con el token en true por defecto y método logout que lo setea en falso y muestra alerta de cierre de sesión.
+
+Se crea la carpeta routes y el archivo ProtectedRoute.jsx con las condiciones para proteger la ruta
+/profile y dejar /login y /register como publicas.
+**IMPORTANTE: Con esta implementación, al dejar por defecto el token en true, al cerrar la sesión e ingresar manualmente a la ruta /profile, se carga el token nuevamente con su valor por defecto.**
+
+Se agrega el botón pagar que se deshabilita si no está iniciada la sesión (token=true) y también se deshabilita si no hay items en el carrito. Al presionar el botón se llama a una nueva función que limpia el carro de compras.
+
+El botón logout del navbar, cambia el valor del token y también lo hace el botón logout de /profile.
+
+La implementación de useParams para cargar la información correspondiente, ya estaba funcionando de un hito anterior.
+
 ## Hito 6 React (21-10-2024)
 
 Se crea una carpeta context en el proyecto

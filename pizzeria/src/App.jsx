@@ -13,6 +13,8 @@ import Login from "./pages/Login";
 import Pizza from "./pages/Pizza";
 import NotFound from "./components/NotFound";
 import Profile from "./components/Profile";
+import { UserProvider } from "./context/UserContext";
+import { ProtectedRoute, PublicRoute } from "./routes/ProtectedRoute";
 
 function App() {
   const [total, setTotal] = useState(0);
@@ -23,23 +25,32 @@ function App() {
   };
 
   return (
-    <PizzaProvider>
-      <CartProvider>
-      <Router>
-        <NavBar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/pizza/:id" Component={Pizza} />
-          <Route path="/profile" element={<Profile user={user} />} />          
-          <Route path="*" element={<NotFound/>} />
-        </Routes>
-        <Footer />
-      </Router>
-      </CartProvider>
-    </PizzaProvider>    
+    <UserProvider>
+      <PizzaProvider>
+        <CartProvider>
+          <Router>
+            <NavBar />
+            <Routes>
+              <Route path="/" element={<Home />} />
+              
+              <Route element={<PublicRoute />}>
+                <Route path="/register" element={<Register />} />
+                <Route path="/login" element={<Login />} />
+              </Route>
+              
+              <Route path="/cart" element={<Cart />} />
+              <Route path="/pizza/:id" Component={Pizza} />
+
+              <Route element={<ProtectedRoute />}>
+                <Route path="/profile" element={<Profile user={user} />} />
+              </Route>            
+              <Route path="*" element={<NotFound/>} />
+            </Routes>
+            <Footer />
+          </Router>
+        </CartProvider>
+      </PizzaProvider>
+    </UserProvider>
   );
 }
 
