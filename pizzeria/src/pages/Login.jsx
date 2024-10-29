@@ -7,54 +7,55 @@ const Login = () => {
     const [email, setEmail] = useState("");
     const [pass, setPass] = useState("");
     const navigate = useNavigate();
-
-    const { setToken } = useContext(UserContext);    
+ 
     const [errorMail, setErrorMail] = useState(false)
-    const [errorMailFormat, setErrorMailFormat] = useState(false)
-
-    
+    const [errorMailFormat, setErrorMailFormat] = useState(false)    
     const [errorPass, setErrorPass] = useState(false)
     const [errorPassLargo, setErrorPassLargo] = useState(false)    
     
-    const handleLogin = async (e) =>{
-        e.preventDefault()
-
-        const isAuthenticated = await login(email, pass);
-        if(isAuthenticated) {
-            alert("Autenticación exitosa");
-            navigate("/profile");
-        }
-        else{
-            alert("Error al iniciar sesión");
-        }
+    const validarInput = () => {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        let isValid = true;
 
         setErrorMail(false)
+        setErrorMailFormat(false)
         setErrorPass(false)
         setErrorPassLargo(false)
-        setErrorMailFormat(false)
-
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
         if(email === ''){
             setErrorMail(true)
-            return
+            isValid = false;
         }
-
         if (!emailRegex.test(email)) {
             setErrorMailFormat(true)
-            return
+            isValid = false;
         }
-
         if(pass === ''){
             setErrorPass(true)
-            return
+            isValid = false;
         }
         if(pass.length < 6){
             setErrorPassLargo(true)
-            return
+            isValid = false;
         }
 
-        navigate("/");
+        return isValid;
+    };
+
+    const handleLogin = async (e) =>{
+        e.preventDefault()
+
+        if(!validarInput()){
+            return;
+        }
+
+        const isAuthenticated = await login(email, pass);
+        if(isAuthenticated) {
+            navigate("/profile");
+        }
+        else{
+            alert("Usuario o Contraseña incorrectos");
+        }
     }
 
     const cambiarMailInput = (e) => {
@@ -83,13 +84,13 @@ const Login = () => {
         <div className="container mt-3 mb-5">
             <h1>Login</h1>
             <form onSubmit={handleLogin}>
-                {errorMail ? <p className="text-bg-danger" id="errorMail">Debes ingresar tu email</p> : null}
-                {errorMailFormat ? (<p className="text-bg-danger" id="errorMailFormat">El formato del email no es válido</p>) : null}
+                {errorMail ? (<div className="alert alert-danger" role="alert">Debes ingresar tu email</div>) : null}
+                {errorMailFormat ? (<div className="alert alert-danger" role="alert">El formato del email no es válido</div>) : null}
                 <label htmlFor="correo" className="form-label">Email</label>
                 <input type="email" id="correo" name="correo" placeholder="Ingresa tu email" className="form-control mb-2" onChange={cambiarMailInput}/>
                 
-                {errorPass ? <p className="text-bg-danger">Debes ingresar tu contraseña</p>: null}
-                {errorPassLargo ? <p className="text-bg-danger">Tu contraseña debe tener al menos 6 caracteres</p>: null}
+                {errorPass ? (<div className="alert alert-danger" role="alert">Debes ingresar tu contraseña</div>) : null}
+                {errorPassLargo ? (<div className="alert alert-danger" role="alert">Tu contraseña debe tener al menos 6 caracteres</div>) : null}
                 <label htmlFor="pass" className="form-label">Contraseña</label>
                 <input type="password" id="pass" name="pass" placeholder="Ingresa tu contraseña" className="form-control mb-2" onChange={cambiarPassInput}/>
                 

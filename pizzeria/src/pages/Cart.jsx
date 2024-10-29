@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { useCart } from "../context/CartContext";
 import { UserContext } from "../context/UserContext";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const Cart = () => {
     const { cartItems, aumentarCantidad, disminuirCantidad, getTotal, clearCart } = useCart();
@@ -59,9 +60,20 @@ const Cart = () => {
                 <button className="btn btn-success" onClick={handlePagar} disabled={!token || cartItems.length === 0}>
                     <i className="bi bi-credit-card-fill"></i>&nbsp;Pagar
                 </button>
-                {!token && <p className="text-danger mt-2">Debes iniciar sesión para hacer el pago!!</p>}
-                {cartItems.length === 0 && <p className="text-danger mt-2">Carrito vacío, agrega tu pizza favorita ;)</p>}
-                {message && <p>{message}</p>}
+                {!token && 
+                    <div class="alert alert-danger" role="alert">
+                        Debes iniciar sesión para hacer el pago!!
+                    </div>}
+                {cartItems.length === 0 && 
+                    <div class="alert alert-danger" role="alert">
+                        Carro vacío, pincha <Link to={"/"}> aquí</Link> para agregar pizzas al carro!
+                    </div>
+                }
+                {message && 
+                    <div class="alert alert-danger" role="alert">
+                        {message}
+                    </div>
+                }
             </div>
         </div>        
     );

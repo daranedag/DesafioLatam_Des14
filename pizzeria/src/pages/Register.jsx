@@ -6,10 +6,20 @@ const Register = () =>{
     const { register } = useContext(UserContext);
     const [email, setEmail] = useState("")    
     const [pass, setPass] = useState("")
+    const [confPass, setConfPass] = useState("")
     const navigate = useNavigate();
+
+    const [errorMail, setErrorMail] = useState(false)
+    const [errorMailFormat, setErrorMailFormat] = useState(false)    
+    const [errorPass, setErrorPass] = useState(false)
+    const [errorPassLength, setErrorPassLength] = useState(false)    
+    const [errorConfPass, setErrorConfPass] = useState(false)
 
     const handleRegister = async (e) => {
         e.preventDefault();
+        if(!validarInput()){
+            return;
+        }
 
         const isRegistered = await register(email, pass);
         if (isRegistered){
@@ -21,19 +31,9 @@ const Register = () =>{
         }
     };
 
-    const [errorMail, setErrorMail] = useState(false)
-    const [errorMailFormat, setErrorMailFormat] = useState(false)
-
     
-    const [errorPass, setErrorPass] = useState(false)
-    const [errorPassLength, setErrorPassLength] = useState(false)
-
-    const [confPass, setConfPass] = useState("")
-    const [errorConfPass, setErrorConfPass] = useState(false)
 
     const validarInput = (e) =>{
-        e.preventDefault()
-
         setErrorMail(false)
         setErrorMailFormat(false)
         setErrorPass(false)
@@ -41,40 +41,37 @@ const Register = () =>{
         setErrorConfPass(false)
 
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+        let isValid = true;
 
         if(email === ''){
             setErrorMail(true)
-            return
+            isValid = false;
         }
-
-        if(!emailRegex.test(email)){
+        else if(!emailRegex.test(email)){
             setErrorMailFormat(true)
-            return
+            isValid = false;
         }
 
         if(pass === ''){
             setErrorPass(true)
-            return
+            isValid = false;
         }
-
-        if(pass.length < 6){
+        else if(pass.length < 6){
             setErrorPassLength(true)
-            return
+            isValid = false;
         }
 
         if(confPass !== pass){
             setErrorConfPass(true)
-            return
+            isValid = false;
         }
 
-        alert("Registro exitoso!!")
-
+        return isValid;
     }
 
     const cambiarMailInput = (e) => {
         setEmail(e.target.value);
     
-        // Si el email no está vacío o tiene el formato correcto, elimina el error
         if (e.target.value !== "") {
             setErrorMail(false);
         }

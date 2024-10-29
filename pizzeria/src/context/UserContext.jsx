@@ -14,6 +14,7 @@ export const UserProvider = ({ children }) => {
             const { token, email: userEmail } = response.data;
             setToken(token);
             setEmail(userEmail);
+            alert("Autenticación exitosa!")
             return true;
         }
         catch(error){
