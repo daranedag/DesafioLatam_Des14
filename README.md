@@ -1,4 +1,8 @@
 # DesafioLatam_Des14
+## Hito 8 React (29-10-2024)
+
+Toda la web funcionando acorde a lo pedido en todos los hitos anteriores. Mejoras visuales en los mensajes de error.
+
 ## Hito 7 React (26-10-2024)
 
 Se crea el userContext dentro de la carpeta context con el token en true por defecto y método logout que lo setea en falso y muestra alerta de cierre de sesión.
